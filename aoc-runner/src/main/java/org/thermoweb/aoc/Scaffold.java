@@ -95,8 +95,8 @@ public class Scaffold implements AocRunner {
                 .addStaticImport(Assertions.class, "assertEquals")
                 .build();
         try {
-            Files.createDirectories(Paths.get("examples"));
-            Files.write(Path.of("examples/example_" + (day > 9 ? day : "0" + day) + ".txt"), "".getBytes(), StandardOpenOption.CREATE);
+            Files.createDirectories(Paths.get("aoc-solutions/src/main/resources/examples"));
+            Files.write(Path.of("aoc-solutions/src/main/resources/examples/example_" + (day > 9 ? day : "0" + day) + ".txt"), "".getBytes(), StandardOpenOption.CREATE);
             javaFile.writeTo(classOutput);
             testFile.writeTo(testOutput);
         } catch (IOException e) {

@@ -43,10 +43,10 @@ public class Download implements AocRunner {
                 throw new RunnerException(response.body());
             }
             String input = response.body();
-            Files.createDirectories(Paths.get("inputs"));
-            Files.write(Path.of("inputs/input_" + (day > 9 ? day : "0" + day) + ".txt"), input.getBytes(), StandardOpenOption.CREATE);
-            Files.createDirectories(Paths.get("examples"));
-            Files.write(Path.of("examples/example_" + (day > 9 ? day : "0" + day) + ".txt"), "".getBytes(), StandardOpenOption.CREATE);
+            Files.createDirectories(Paths.get("aoc-solutions/src/main/resources/inputs"));
+            Files.write(Path.of("aoc-solutions/src/main/resources/inputs/input_" + (day > 9 ? day : "0" + day) + ".txt"), input.getBytes(), StandardOpenOption.CREATE);
+            Files.createDirectories(Paths.get("aoc-solutions/src/main/resources/examples"));
+            Files.write(Path.of("aoc-solutions/src/main/resources/examples/example_" + (day > 9 ? day : "0" + day) + ".txt"), "".getBytes(), StandardOpenOption.CREATE);
         } catch (IOException e) {
             throw new RunnerException(e);
         } catch (InterruptedException e) {
