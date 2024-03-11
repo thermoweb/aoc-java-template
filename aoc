@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+COMMAND=$1
+AOC_JAR=${SCRIPT_DIR}/aoc-runner/target/aoc.jar
+
+if [ ${COMMAND} == "solve" ] || [ ! -f ${AOC_JAR} ]
+then
+  echo "building project jars"
+  ./mvnw --batch-mode --quiet clean install
+fi
+
+if [ ${COMMAND} == "" ]
+then
+  java -jar ${AOC_JAR} help
+  exit 1
+fi
+
+echo "launching aoc command '$@'"
+java -jar ${AOC_JAR} $@
