@@ -13,8 +13,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Download implements AocRunner {
 
+    private static final Logger logger = LoggerFactory.getLogger(Download.class);
     private final int day;
     private final int year;
     private final String token;
@@ -44,9 +48,14 @@ public class Download implements AocRunner {
             }
             String input = response.body();
             Files.createDirectories(Paths.get("aoc-solutions/src/main/resources/inputs"));
-            Files.write(Path.of("aoc-solutions/src/main/resources/inputs/input_" + (day > 9 ? day : "0" + day) + ".txt"), input.getBytes(), StandardOpenOption.CREATE);
+            String inputFile = "aoc-solutions/src/main/resources/inputs/input_" + (day > 9 ? day : "0" + day) + ".txt";
+            Files.write(Path.of(inputFile), input.getBytes(), StandardOpenOption.CREATE);
+            logger.atInfo().log("Input file '{}' created", inputFile);
+
             Files.createDirectories(Paths.get("aoc-solutions/src/main/resources/examples"));
-            Files.write(Path.of("aoc-solutions/src/main/resources/examples/example_" + (day > 9 ? day : "0" + day) + ".txt"), "".getBytes(), StandardOpenOption.CREATE);
+            String exampleFile = "aoc-solutions/src/main/resources/examples/example_" + (day > 9 ? day : "0" + day) + ".txt";
+            Files.write(Path.of(exampleFile), "".getBytes(), StandardOpenOption.CREATE);
+            logger.atInfo().log("Example file '{}' created", exampleFile);
         } catch (IOException e) {
             throw new RunnerException(e);
         } catch (InterruptedException e) {

@@ -1,17 +1,16 @@
 package org.thermoweb.aoc;
 
-import java.util.Arrays;
-
 import org.thermoweb.aoc.commands.DownloadCommand;
 import org.thermoweb.aoc.commands.ScaffoldCommand;
 import org.thermoweb.aoc.commands.SolveDayCommand;
 
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "aoc", subcommands = {
+@CommandLine.Command(name = "aoc", description = "run Advent of Code command line tool.", subcommands = {
         SolveDayCommand.class,
         ScaffoldCommand.class,
-        DownloadCommand.class
+        DownloadCommand.class,
+        CommandLine.HelpCommand.class
 })
 public class AOC {
 
@@ -20,7 +19,6 @@ public class AOC {
     }
 
     public static void main(String[] args) {
-        System.out.println("Launched with : " + Arrays.toString(args));
         int exitCode = new CommandLine(new AOC()).execute(args);
         System.exit(exitCode);
     }

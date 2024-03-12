@@ -5,9 +5,9 @@ import org.thermoweb.aoc.Scaffold;
 
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "scaffold")
+@CommandLine.Command(name = "scaffold", description = "create class and tests for the day.")
 public class ScaffoldCommand implements Runnable {
-    @CommandLine.Option(names = "--day")
+    @CommandLine.Option(names = "--day", description = "day to scaffold")
     private int day;
 
 

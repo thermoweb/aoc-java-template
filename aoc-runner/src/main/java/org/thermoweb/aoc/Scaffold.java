@@ -12,6 +12,8 @@ import javax.lang.model.element.Modifier;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.squareup.javapoet.AnnotationSpec;
 import com.squareup.javapoet.ClassName;
@@ -25,6 +27,7 @@ import com.squareup.javapoet.TypeSpec;
 
 public class Scaffold implements AocRunner {
 
+    private static final Logger logger = LoggerFactory.getLogger(Scaffold.class);
     private final int day;
 
     private Scaffold(int day) {
@@ -96,9 +99,13 @@ public class Scaffold implements AocRunner {
                 .build();
         try {
             Files.createDirectories(Paths.get("aoc-solutions/src/main/resources/examples"));
-            Files.write(Path.of("aoc-solutions/src/main/resources/examples/example_" + (day > 9 ? day : "0" + day) + ".txt"), "".getBytes(), StandardOpenOption.CREATE);
+            String exampleFile = "aoc-solutions/src/main/resources/examples/example_" + (day > 9 ? day : "0" + day) + ".txt";
+            Files.write(Path.of(exampleFile), "".getBytes(), StandardOpenOption.CREATE);
+            logger.atInfo().log("file '{}' created", exampleFile);
             javaFile.writeTo(classOutput);
+            logger.atInfo().log("day class '{}' created in '{}'", dayClass.name, classOutput);
             testFile.writeTo(testOutput);
+            logger.atInfo().log("test class '{}' created in '{}'", testClass.name, testOutput);
         } catch (IOException e) {
             throw new RunnerException(e);
         }

@@ -2,17 +2,18 @@ package org.thermoweb.aoc;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DayRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(DayRunner.class);
 
     private DayRunner() {
 
@@ -45,9 +46,9 @@ public class DayRunner {
             long start = System.nanoTime();
             Optional<BigInteger> result = dayToRun.partOne(input);
             long end = System.nanoTime();
-            System.out.println("part 1: " + result.map(BigInteger::toString).orElse("<None>") + " (" + (end - start) / 1000000 + " ms)");
+            logger.info("part 1: {} ({}) ms", result.map(BigInteger::toString).orElse("<None>"), (end - start) / 1000000);
         } catch (Exception e) {
-            System.out.println("exception occured in part 1!");
+            logger.atError().log("exception occurred in part 1!");
         }
     }
 
@@ -56,9 +57,9 @@ public class DayRunner {
             long start = System.nanoTime();
             Optional<BigInteger> result = dayToRun.partTwo(input);
             long end = System.nanoTime();
-            System.out.println("part 2: " + result.map(BigInteger::toString).orElse("<None>") + " (" + (end - start) / 1000000 + " ms)");
+            logger.info("part 2: {} ({}) ms", result.map(BigInteger::toString).orElse("<None>"), (end - start) / 1000000);
         } catch (Exception e) {
-            System.out.println("exception occured in part 1!");
+            logger.atError().log("exception occurred in part 2!");
         }
     }
 }

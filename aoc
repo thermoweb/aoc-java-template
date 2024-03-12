@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-echo "building jars"
-./mvnw clean install
-echo "launching aoc command $@"
+
+echo "building project jars"
+./mvnw --batch-mode --quiet clean install
+
+echo "launching aoc command '$@'"
 java -jar "${SCRIPT_DIR}/aoc-runner/target/aoc.jar" "$@"

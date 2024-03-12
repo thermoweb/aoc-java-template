@@ -6,7 +6,7 @@ import org.thermoweb.aoc.Solve;
 
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "solve")
+@CommandLine.Command(name = "solve", description = "run the solution with the input for the specified day.")
 public class SolveDayCommand implements Callable<Integer> {
 
     @CommandLine.Option(names = {"-d", "--day"}, description = "day to solve", required = true)

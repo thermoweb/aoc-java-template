@@ -7,14 +7,16 @@ import java.util.Arrays;
 import java.util.Set;
 
 import org.reflections.Reflections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.reflections.scanners.Scanners.SubTypes;
 import static org.reflections.scanners.Scanners.TypesAnnotated;
 
 public class Solve implements AocRunner {
 
+    private static final Logger logger = LoggerFactory.getLogger(Solve.class);
     private final int day;
-
     public Solve(int day) {
         this.day = day;
     }
@@ -25,7 +27,7 @@ public class Solve implements AocRunner {
 
     @Override
     public void execute() throws RunnerException {
-        System.out.println("solving day " + day);
+        logger.info("solving day {}", day);
         Reflections reflections = new Reflections("org.thermoweb.aoc");
         Set<Class<?>> daySolvers = reflections.get(SubTypes.of(TypesAnnotated.with(DaySolver.class)).asClass());
         Class<?> daySolver = daySolvers.stream()
