@@ -10,47 +10,12 @@ Solutions for [Advent of Code](https://adventofcode.com/) in Java ☕.
 - Java 17+ installed
 
 ## Usage
-### Before starting
-First you have to build the project
-```shell
-./mvnw clean install
-```
-
-There is two ways to run `aoc`:
-
-- using maven custom goal
-- using command line tool (java [picocli](https://picocli.info/) application)
-
-> [!TIP]
-> In order to be able to use shortened maven goal, add the maven plugin group in your `~/.m2/settings.xml`:
-> ```xml
-> <settings>
->   <pluginGroups>
->     <pluginGroup>org.thermoweb</pluginGroup>
->   </pluginGroups>
-> </settings>
-> ```
-> If this is not configured you'll have to user `org.thermoweb:aoc-maven-plugin:<goal>` instead of `aoc:<goal>` in the command line.
-
 ### Scaffold a day
 This will create both day class and the associated test.
-#### with aoc cli
 ```shell
 # example: `./aoc scaffold --day 1`
 ./aoc scaffold --day <day>
 ```
-
-#### with maven goal
-```shell
-# example: `./mvnw aoc:scaffold -Dday=1`
-./mvnw aoc:scaffold -Dday=<day>
-```
-or if you did not added the pluginGroup in your maven settings:
-```shell
-# example: `./mvnw org.thermoweb:aoc-maven-plugin:scaffold -Dday=1`
-./mvnw org.thermoweb:aoc-maven-plugin:scaffold -Dday=<day>
-```
-
 
 ### Download Input for a day
 
@@ -71,6 +36,37 @@ this will create the input file and download corresponding data of day and an em
 ./aoc solve --day <day>
 ```
 This will launch the day solver for the specified day with the input. 
+
+### Alternative way to launch project
+#### with maven goal
+First you have to build the project
+```shell
+./mvnw clean install
+```
+
+Then you can use custom maven goals:
+
+```shell
+# example: `./mvnw org.thermoweb:aoc-maven-plugin:scaffold -Dday=1`
+./mvnw org.thermoweb:aoc-maven-plugin:<command> -Dday=<day>
+```
+
+> [!TIP]
+> You can use the shortened maven goal, you have to had the maven plugin group in your `~/.m2/settings.xml`:
+> ```xml
+> <settings>
+>   <pluginGroups>
+>     <pluginGroup>org.thermoweb</pluginGroup>
+>   </pluginGroups>
+> </settings>
+> ```
+> ```shell
+> # example: `./mvnw aoc:scaffold -Dday=1`
+> ./mvnw aoc:<command> -Dday=<day>
+> ```
+
+
+
 
 ---
 
