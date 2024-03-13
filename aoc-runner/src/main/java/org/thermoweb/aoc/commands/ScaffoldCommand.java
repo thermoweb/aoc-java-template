@@ -7,7 +7,7 @@ import picocli.CommandLine;
 
 @CommandLine.Command(name = "scaffold", description = "create class and tests for the day.")
 public class ScaffoldCommand implements Runnable {
-    @CommandLine.Option(names = "--day", description = "day to scaffold")
+    @CommandLine.Option(names = {"-d", "--day"}, description = "day to scaffold")
     private int day;
 
 
@@ -18,7 +18,7 @@ public class ScaffoldCommand implements Runnable {
                     .withDay(day)
                     .buildAndExecute();
         } catch (RunnerException e) {
-            throw new RuntimeException(e);
+            throw new CommandException(e);
         }
     }
 }
