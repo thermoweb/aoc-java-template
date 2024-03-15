@@ -2,6 +2,7 @@ package org.thermoweb.aoc.commands;
 
 import java.util.concurrent.Callable;
 
+import org.thermoweb.aoc.AOC;
 import org.thermoweb.aoc.Solve;
 
 import picocli.CommandLine;
@@ -9,12 +10,12 @@ import picocli.CommandLine;
 @CommandLine.Command(name = "solve", description = "run the solution with the input for the specified day.")
 public class SolveDayCommand implements Callable<Integer> {
 
-    @CommandLine.Option(names = {"-d", "--day"}, description = "day to solve", required = true)
-    private Integer day;
+    @CommandLine.ParentCommand
+    private AOC aoc;
 
     @Override
     public Integer call() throws Exception {
-        Solve.builder().withDay(day).buildAndExecute();
+        Solve.builder().withDay(aoc.getDay()).buildAndExecute();
         return 0;
     }
 }

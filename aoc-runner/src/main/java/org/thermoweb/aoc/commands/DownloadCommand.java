@@ -1,5 +1,6 @@
 package org.thermoweb.aoc.commands;
 
+import org.thermoweb.aoc.AOC;
 import org.thermoweb.aoc.Download;
 import org.thermoweb.aoc.RunnerException;
 
@@ -8,8 +9,8 @@ import picocli.CommandLine;
 @CommandLine.Command(name = "download", description = "download input file and create an empty example file.")
 public class DownloadCommand implements Runnable {
 
-    @CommandLine.Option(names = "--day", description = "day to download")
-    private int day;
+    @CommandLine.ParentCommand
+    private AOC aoc;
 
     @CommandLine.Option(names = "--year", defaultValue = "2023", description = "if you want to change the year of aoc")
     private int year;
@@ -21,12 +22,12 @@ public class DownloadCommand implements Runnable {
     public void run() {
         try {
             Download.builder()
-                    .withDay(day)
+                    .withDay(aoc.getDay())
                     .withYear(year)
                     .withToken(session)
                     .buildAndExecute();
         } catch (RunnerException e) {
-            throw new RuntimeException(e);
+            throw new CommandException(e);
         }
     }
 }

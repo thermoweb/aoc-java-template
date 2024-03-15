@@ -8,7 +8,7 @@ if ["%JAVA_HOME%"] == [""] (
 )
 set buildJars=false
 if ["%1"] == "solve" set buildJars=true
-if not exists %aocJar% set buildJars=true
+if not exist "%aocJar%" set buildJars=true
 
 if "%buildJars%"=="true" (
     echo "building project jars"
@@ -16,4 +16,4 @@ if "%buildJars%"=="true" (
 )
 
 echo "launching aoc command '%*'"
-%JAVA_HOME%\bin\java -jar %aocJar% %*
+%JAVA_HOME%\bin\java -jar "%aocJar%" %*
