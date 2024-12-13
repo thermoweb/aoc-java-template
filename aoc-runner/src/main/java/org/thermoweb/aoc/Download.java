@@ -61,8 +61,6 @@ public class Download implements AocRunner {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new RunnerException(e);
-        } finally {
-            httpClient.close();
         }
     }
 
