@@ -12,7 +12,7 @@ public class DownloadCommand implements Runnable {
     @CommandLine.ParentCommand
     private AOC aoc;
 
-    @CommandLine.Option(names = "--year", defaultValue = "2023", description = "if you want to change the year of aoc")
+    @CommandLine.Option(names = "--year", defaultValue = "2024", description = "if you want to change the year of aoc")
     private int year;
 
     @CommandLine.Option(names = "--token", description = "if you do not have a .adventofcode.session in your home folder, you can specify it in the command line.")

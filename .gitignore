@@ -2,6 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/aoc-solutions/src/main/resources/inputs/**
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

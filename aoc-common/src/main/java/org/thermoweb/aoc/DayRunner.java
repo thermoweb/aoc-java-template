@@ -46,7 +46,7 @@ public class DayRunner {
             long start = System.nanoTime();
             Optional<BigInteger> result = dayToRun.partOne(input);
             long end = System.nanoTime();
-            logger.info("part 1: {} ({}) ms", result.map(BigInteger::toString).orElse("<None>"), (end - start) / 1000000);
+            logger.atInfo().log("part 1: {} ({}) ms", result.map(BigInteger::toString).orElse("<None>"), (end - start) / 1000000);
         } catch (Exception e) {
             logger.atError().log("exception occurred in part 1!");
         }
@@ -57,7 +57,7 @@ public class DayRunner {
             long start = System.nanoTime();
             Optional<BigInteger> result = dayToRun.partTwo(input);
             long end = System.nanoTime();
-            logger.info("part 2: {} ({}) ms", result.map(BigInteger::toString).orElse("<None>"), (end - start) / 1000000);
+            logger.atInfo().log("part 2: {} ({}) ms", result.map(BigInteger::toString).orElse("<None>"), (end - start) / 1000000);
         } catch (Exception e) {
             logger.atError().log("exception occurred in part 2!");
         }
