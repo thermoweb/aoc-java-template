@@ -40,8 +40,8 @@ public class Download implements AocRunner {
                 .header("Cookie", "session=" + token)
                 .GET()
                 .build();
-
-        try (HttpClient httpClient = HttpClient.newHttpClient()) {
+        HttpClient httpClient = HttpClient.newHttpClient();
+        try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() / 100 != 2) {
                 throw new RunnerException(response.body());
@@ -61,6 +61,8 @@ public class Download implements AocRunner {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new RunnerException(e);
+        } finally {
+            httpClient.close();
         }
     }
 
